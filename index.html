@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funmi - Your Virtual Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0078D7;
+      margin-bottom: 20px;
+    }
+    #chat-box {
+      height: 200px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1rem;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Funmi – Virtual Assistant</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="userInput" placeholder="Type your message here..." />
+    <button onclick="talk()">Send</button>
+  </div>
+
+  <script>
+    function talk() {
+      const input = document.getElementById("userInput").value.toLowerCase();
+      const chatBox = document.getElementById("chat-box");
+
+      const response = (msg) => {
+        chatBox.innerHTML += `<p><strong>Funmi:</strong> ${msg}</p>`;
+      }
+
+      chatBox.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+
+      if (input.includes("hello")) {
+        response("Hi there! How can I assist you today?");
+      } else if (input.includes("time")) {
+        const now = new Date().toLocaleTimeString();
+        response(`The current time is ${now}.`);
+      } else if (input.includes("your name")) {
+        response("My name is Funmi. I'm your virtual assistant!");
+      } else if (input.includes("bye")) {
+        response("Goodbye! Talk to you soon.");
+      } else {
+        response("Sorry, I'm still learning. Please try something else.");
+      }
+
+      document.getElementById("userInput").value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
